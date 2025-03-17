@@ -42,7 +42,7 @@ A simple URL shortener that converts long URLs into short.
 4. Start the server:
 
    ```bash
-   npm start
+   npm run dev
    ```
 
 ## Setup Google App Script
