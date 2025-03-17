@@ -101,7 +101,7 @@ function CreateShortUrl() {
         </label>
         <div
           className={cn(
-            'border flex rounded-xl items-center pl-2 text-slate-400 border-gray-500',
+            'border flex rounded-xl items-center pl-2 text-slate-400 border-gray-500 whitespace-nowrap',
             !state.useCustomUrl && 'bg-slate-200 cursor-not-allowed'
           )}
         >
