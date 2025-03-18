@@ -47,7 +47,7 @@ A simple URL shortener that converts long URLs into short.
 
 ## Setup Google App Script
 
-See step by step [here](http://notes.solehudin.my.id/blog/2025/03/17/use-app-script-to-create-api-url-shortener)
+See step by step [here](http://notes.solehudin.id/blog/2025/03/17/use-app-script-to-create-api-url-shortener)
 
 ## Contributing
 
