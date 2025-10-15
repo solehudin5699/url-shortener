@@ -19,7 +19,6 @@ export async function GET(request: Request) {
 
     // const data = await response.json();
     const originalUrl = response.headers.get('location');
-    console.log(response.headers.get('location'));
 
     // if (data?.code !== 200) {
     //   return new Response(JSON.stringify({ error: data?.error || 'Error processing request' }), {
