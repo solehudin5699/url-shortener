@@ -128,19 +128,19 @@ function CreateShortUrl() {
       </button>
 
       {state.resultGenerated && !state.isLoading && (
-        <div className="flex flex-col gap-1 border border-gray-300 p-4 rounded-xl">
-          <p className="text-green-500 font-semibold">✅Short URL Generated</p>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-slate-400">
+        <div className="flex flex-col gap-1 border border-gray-300 p-3 rounded-xl relative bg-slate-100 backdrop-blur-2xl">
+          <p className="text-green-500 font-semibold">✅ Short URL Generated</p>
+          <button
+            className="bg-blue-500 hover:opacity-90 text-white px-2 py-1 rounded-xl cursor-pointer text-sm top-3 right-3 absolute"
+            onClick={handleCopy}
+            type="button"
+          >
+            {isCopied ? 'Copied' : 'Copy'}
+          </button>
+          <div className="overflow-auto">
+            <span className="text-sm text-black/80">
               {window.location.origin}/{state.resultGenerated}
             </span>
-            <button
-              className="bg-blue-500 hover:opacity-90 text-white px-2 py-1 rounded-xl cursor-pointer text-sm"
-              onClick={handleCopy}
-              type="button"
-            >
-              {isCopied ? 'Copied' : 'Copy'}
-            </button>
           </div>
         </div>
       )}
