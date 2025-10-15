@@ -7,10 +7,10 @@ import { cn } from '@/utils/className';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-5">
+    <div className="min-h-screen flex items-center justify-center p-5 relative">
       <div
         className={cn(
-          'shadow-2xl bg-white rounded-2xl min-w-[300px] max-w-[850px] w-full min-h-[500px]',
+          'shadow-2xl bg_view_card rounded-2xl min-w-[300px] max-w-[850px] w-full min-h-[500px]',
           'relative overflow-hidden'
         )}
         style={

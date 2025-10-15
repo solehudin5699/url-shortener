@@ -2,16 +2,6 @@
 
 import React, { FormEvent, useState } from 'react';
 
-function extractCode(url: string) {
-  try {
-    const path = new URL(url).pathname; // Get "/aaa/test"
-    const parts = path.split('/').filter(Boolean); // array: ["aaa", "test"]
-    return parts[0]; // Get "aaa"
-  } catch (_error) {
-    return null;
-  }
-}
-
 function CheckShortUrl() {
   const [state, setState] = useState({
     shortUrl: '',
@@ -39,14 +29,13 @@ function CheckShortUrl() {
   const handleCheckShortUrl = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { shortUrl } = state;
-    const code = extractCode(shortUrl);
     if (!shortUrl) {
       alert('Please enter short url');
       return;
     }
     setState((prev) => ({ ...prev, isLoading: true }));
     try {
-      const response = await fetch(`/api/check-link?code=${code}`, {
+      const response = await fetch(`/api/check-link?url=${encodeURIComponent(shortUrl)}`, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -65,17 +54,17 @@ function CheckShortUrl() {
   };
 
   return (
-    <form className="flex flex-col gap-4 p-4 rounded-md w-1/2" onSubmit={handleCheckShortUrl}>
-      <h5 className="font-bold text-xl mb-3 text-center mt-10">Check Short URL</h5>
+    <form className="flex flex-col gap-4 p-6 w-1/2" onSubmit={handleCheckShortUrl}>
+      <h5 className="font-bold text-xl mb-3 text-center mt-10 text-white">Check Short URL</h5>
       <div>
-        <label htmlFor="short-url" className="font-semibold">
+        <label htmlFor="short-url" className="font-semibold text-white">
           Short URL
         </label>
         <input
           type="text"
           id="short-url"
-          placeholder={window.location.origin + '/short-url'}
-          className="w-full p-2 rounded-xl border border-gray-500"
+          placeholder={window.location.origin + '/slug'}
+          className="w-full p-2 rounded-xl border border-white/70 text-black bg-white outline-0 focus-within:outline-2 focus-within:outline-blue-500"
           name="shortUrl"
           value={state.shortUrl}
           onChange={handleChange}
@@ -89,18 +78,23 @@ function CheckShortUrl() {
         {state.isLoading ? 'Checking...' : 'Check Now'}
       </button>
 
+      {state.resultGenerated === null && (
+        <span className="text-sm bg-white p-3 text-black/80 rounded-2xl">
+          The link you entered does not redirect to another URL
+        </span>
+      )}
       {state.resultGenerated && (
-        <div className="flex flex-col gap-1 border border-gray-300 p-4 rounded-xl overflow-auto">
+        <div className="flex flex-col gap-1 border border-gray-300 p-3 rounded-xl relative bg-slate-100 backdrop-blur-2xl">
           <p className="text-green-500 font-semibold">Original URL</p>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-slate-400">{state.resultGenerated}</span>
-            <button
-              className="bg-blue-500 hover:opacity-90 text-white px-2 py-1 rounded-xl cursor-pointer text-sm"
-              onClick={handleCopy}
-              type="button"
-            >
-              {isCopied ? 'Copied' : 'Copy'}
-            </button>
+          <button
+            className="bg-blue-500 hover:opacity-90 text-white px-2 py-1 rounded-xl cursor-pointer text-sm top-3 right-3 absolute"
+            onClick={handleCopy}
+            type="button"
+          >
+            {isCopied ? 'Copied' : 'Copy'}
+          </button>
+          <div className="overflow-auto">
+            <span className="text-sm text-black/80">{state.resultGenerated}</span>
           </div>
         </div>
       )}

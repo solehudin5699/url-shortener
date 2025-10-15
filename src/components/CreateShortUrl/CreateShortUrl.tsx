@@ -33,7 +33,7 @@ function CreateShortUrl() {
     e.preventDefault();
     const { originalUrl, shortCode } = state;
     if (!originalUrl) {
-      alert('Please enter original url');
+      alert('Please enter custom slug');
       return;
     }
     setState((prev) => ({ ...prev, isLoading: true }));
@@ -62,17 +62,17 @@ function CreateShortUrl() {
   };
 
   return (
-    <form className="flex flex-col gap-4 p-4 rounded-md w-1/2" onSubmit={handleGenerate}>
-      <h5 className="font-bold text-xl mb-3 text-center mt-10">Generate Short URL</h5>
+    <form className="flex flex-col gap-4 p-6 w-1/2" onSubmit={handleGenerate}>
+      <h5 className="font-bold text-xl mb-3 text-center mt-10 text-white">Generate Short URL</h5>
       <div>
-        <label htmlFor="original-url" className="font-semibold">
+        <label htmlFor="original-url" className="font-semibold text-white">
           Original URL
         </label>
         <input
           type="text"
           id="original-url"
           placeholder="Enter Original URL"
-          className="w-full p-2 rounded-xl border border-gray-500"
+          className="w-full p-2 rounded-xl border border-white/70 outline-0 focus:outline-2 focus:outline-blue-500 text-black bg-white"
           name="originalUrl"
           value={state.originalUrl}
           onChange={handleChange}
@@ -97,19 +97,20 @@ function CreateShortUrl() {
             }}
             readOnly
           />
-          <span className="text-sm">Custom Short URL</span>
+          <span className="text-sm text-white">Custom Slug</span>
         </label>
         <div
           className={cn(
-            'border flex rounded-xl items-center pl-2 text-slate-400 border-gray-500 whitespace-nowrap',
-            !state.useCustomUrl && 'bg-slate-200 cursor-not-allowed'
+            'border flex rounded-xl items-center pl-2 text-black border-white/70 whitespace-nowrap bg-white',
+            !state.useCustomUrl && 'bg-slate-300 cursor-not-allowed text-black/50',
+            'outline-0 focus-within:outline-2 focus-within:outline-blue-500'
           )}
         >
           {window.location.origin}/
           <input
             type="text"
-            placeholder="custom-short-url"
-            className="w-full p-2 pl-0 rounded-tr-xl rounded-br-xl outline-none text-black text-sm focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed"
+            placeholder="custom-slug"
+            className="w-full p-2 pl-0 rounded-tr-xl rounded-br-xl outline-none border-white/70 outline-0 text-black bg-white disabled:cursor-not-allowed disabled:bg-slate-300"
             name="shortCode"
             disabled={!state.useCustomUrl}
             value={state.shortCode}
