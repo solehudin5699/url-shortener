@@ -13,7 +13,7 @@ function Overlay() {
           'left-0 right-[50%] rounded-s-2xl': position === 'left',
         },
         'flex flex-col justify-center items-center gap-1 shadow-[0px_0px_50px_-12px_var(--tw-shadow-color,rgb(0_0_0/0.25))]',
-        'bg_view_card_overlay'
+        'backdrop-blur-[30px] bg_view_card_overlay'
       )}
     >
       <h1 className="font-bold text-2xl text-center text-white">Welcome to URL Shortener</h1>

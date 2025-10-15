@@ -68,8 +68,8 @@ ul {
 }
 .bg_view_card_overlay {
   background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  /* backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px); */
 }
 
 .glass-card {
