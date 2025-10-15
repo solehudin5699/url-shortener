@@ -4,6 +4,7 @@ import CheckShortUrl from '@/components/CheckShortUrl';
 import CreateShortUrl from '@/components/CreateShortUrl';
 import Overlay from '@/components/Overlay';
 import { cn } from '@/utils/className';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -25,6 +26,12 @@ export default function Home() {
         </div>
         <Overlay />
       </div>
+      <span className="text-sm text-white/90 absolute bottom-1 left-1/2 translate-x-[-50%] font-bold">
+        <Link rel="noopener noreferrer" href={'https://solehudin.id'} className="hover:underline">
+          Solehudin
+        </Link>{' '}
+        © 2025
+      </span>
     </div>
   );
 }
