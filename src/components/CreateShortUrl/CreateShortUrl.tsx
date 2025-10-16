@@ -62,8 +62,8 @@ function CreateShortUrl() {
   };
 
   return (
-    <form className="flex flex-col gap-4 p-6 w-1/2" onSubmit={handleGenerate}>
-      <h5 className="font-bold text-xl mb-3 text-center mt-10 text-white">Generate Short URL</h5>
+    <form className="flex flex-col gap-4 p-8 w-1/2" onSubmit={handleGenerate}>
+      <h5 className="font-bold text-xl mb-10 text-center mt-10 text-white">Generate Short URL</h5>
       <div>
         <label htmlFor="original-url" className="font-semibold text-white">
           Original URL
