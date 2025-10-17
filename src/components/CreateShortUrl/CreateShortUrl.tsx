@@ -32,10 +32,20 @@ function CreateShortUrl() {
   const handleGenerate = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { originalUrl, shortCode } = state;
-    if (!originalUrl) {
-      alert('Please enter custom slug');
+    if (!originalUrl && !shortCode && state.useCustomUrl) {
+      alert('Please enter original url & custom slug');
       return;
     }
+    if (!originalUrl) {
+      alert('Please enter original url');
+      return;
+    }
+    if (!shortCode && state.useCustomUrl) {
+      alert('Please enter custom slug');
+
+      return;
+    }
+
     setState((prev) => ({ ...prev, isLoading: true }));
     try {
       const response = await fetch('/api/generate-link', {
@@ -53,9 +63,9 @@ function CreateShortUrl() {
         return setState((prev) => ({ ...prev, resultGenerated: data.shortCode }));
       }
 
-      alert(data?.error || 'Error generating short URL');
+      alert(data?.error || 'Error generating shortlink');
     } catch (error: any) {
-      alert(error?.message || 'Error generating short URL');
+      alert(error?.message || 'Error generating shortlink');
     } finally {
       setState((prev) => ({ ...prev, isLoading: false }));
     }
@@ -63,7 +73,7 @@ function CreateShortUrl() {
 
   return (
     <form className="flex flex-col gap-4 p-8 w-1/2" onSubmit={handleGenerate}>
-      <h5 className="font-bold text-xl mb-10 text-center mt-10 text-white">Generate Short URL</h5>
+      <h5 className="font-bold text-xl mb-10 text-center mt-10 text-white">Generate Shortlink</h5>
       <div>
         <label htmlFor="original-url" className="font-semibold text-white">
           Original URL
@@ -129,7 +139,7 @@ function CreateShortUrl() {
 
       {state.resultGenerated && !state.isLoading && (
         <div className="flex flex-col gap-1 border border-gray-300 p-3 rounded-xl relative bg-slate-100 backdrop-blur-2xl">
-          <p className="text-green-500 font-semibold">✅ Short URL Generated</p>
+          <p className="text-green-500 font-semibold">✅ Shortlink Generated</p>
           <button
             className="bg-blue-500 hover:opacity-90 text-white px-2 py-1 rounded-xl cursor-pointer text-sm top-3 right-3 absolute"
             onClick={handleCopy}

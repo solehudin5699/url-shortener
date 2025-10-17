@@ -30,7 +30,7 @@ function CheckShortUrl() {
     e.preventDefault();
     const { shortUrl } = state;
     if (!shortUrl) {
-      alert('Please enter short url');
+      alert('Please enter shortlink');
       return;
     }
     setState((prev) => ({ ...prev, isLoading: true }));
@@ -45,9 +45,9 @@ function CheckShortUrl() {
         return setState((prev) => ({ ...prev, resultGenerated: data.originalUrl }));
       }
 
-      alert(data?.error || 'Error check short URL');
+      alert(data?.error || 'Error check shortlink');
     } catch (error: any) {
-      alert(error?.message || 'Error check short URL');
+      alert(error?.message || 'Error check shortlink');
     } finally {
       setState((prev) => ({ ...prev, isLoading: false }));
     }
@@ -55,10 +55,10 @@ function CheckShortUrl() {
 
   return (
     <form className="flex flex-col gap-4 p-8 w-1/2" onSubmit={handleCheckShortUrl}>
-      <h5 className="font-bold text-xl mb-10 text-center mt-10 text-white">Check Short URL</h5>
+      <h5 className="font-bold text-xl mb-10 text-center mt-10 text-white">Check Shortlink</h5>
       <div>
         <label htmlFor="short-url" className="font-semibold text-white">
-          Short URL
+          Shortlink
         </label>
         <input
           type="text"
